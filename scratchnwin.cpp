@@ -25,6 +25,12 @@ int main () {
     ticket.v2 = rand() % 10 + 1;
     ticket.v3  = rand() % 10 + 1;
 
+    cout << " ---SCRATCH 'N' WIN--- \n";
+    cout << "|    ___  ___  ___    |\n";
+    cout << "|   |   |     |   |   |\n";
+    cout << "|    ---  ---  ---    |\n";
+    cout << " --------------------- \n";
+
     cout << "Ticket values are: " << ticket.v1 << ticket.v2 << ticket.v3;
 
     return 0;

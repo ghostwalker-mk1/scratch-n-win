@@ -21,17 +21,17 @@ int main () {
     Player player;
     Ticket ticket;
 
-    ticket.v1 = rand() % 10 + 1;
-    ticket.v2 = rand() % 10 + 1;
-    ticket.v3  = rand() % 10 + 1;
+    ticket.v1 = rand() % 9 + 1;
+    ticket.v2 = rand() % 9 + 1;
+    ticket.v3  = rand() % 9 + 1;
 
-    cout << " ---SCRATCH 'N' WIN--- \n";
-    cout << "|    ___  ___  ___    |\n";
-    cout << "|   |   |     |   |   |\n";
-    cout << "|    ---  ---  ---    |\n";
-    cout << " --------------------- \n";
+    
 
-    cout << "Ticket values are: " << ticket.v1 << ticket.v2 << ticket.v3;
+    printf(" --SCRATCH 'N' WIN-- \n");
+    printf("|    ___ ___ ___    |\n");
+    printf("|   | %i | %i | %i |   |\n", ticket.v1, ticket.v2, ticket.v3);
+    printf("|    --- --- ---    |\n");
+    printf(" ------------------- \n");
 
     return 0;
 

@@ -10,7 +10,7 @@ using namespace std;
 int main () {
 
     struct {
-        double p = 0.695;
+        double prob = 0.695;
         int payout = 0;
         string symbol = "💣";
         double lowR = 0;
@@ -18,7 +18,7 @@ int main () {
     } lose;
 
     struct {
-        double p = 0.170;
+        double prob = 0.170;
         int payout = 1;
         string symbol = "🍋";
         double lowR = 0.695;
@@ -26,7 +26,7 @@ int main () {
     } small1;
 
     struct {
-        double p = 0.070;
+        double prob = 0.070;
         int payout = 2;
         string symbol = "🍒";
         double lowR = 0.865;
@@ -34,7 +34,7 @@ int main () {
     } small2;
 
     struct {
-        double p = 0.040;
+        double prob = 0.040;
         int payout = 5;
         string symbol = "🍇";
         double lowR = 0.935;
@@ -42,7 +42,7 @@ int main () {
     } mid;
 
     struct {
-        double p = 0.015;
+        double prob = 0.015;
         int payout = 10;
         string symbol = "🔔";
         double lowR = 0.975;
@@ -50,14 +50,18 @@ int main () {
     } big;
 
     struct {
-        double p = 0.010;
+        double prob = 0.010;
         int payout = 25;
         string symbol = "⭐";
         double lowR = 0.990;
         double highR = 1.000;
     } jackpot;
 
+    srand(time(NULL));
 
+    double roll = ((double) rand() / RAND_MAX);
+    cout << roll <<"\n";
+    
     
     array<string, 4> banners = {
     " --SCRATCH 'N' WIN-- \n"
@@ -68,19 +72,19 @@ int main () {
 
     " --SCRATCH 'N' WIN-- \n"
     "|    ___ ___ ___    |\n"
-    "|   | " + to_string(ticket.value1) + " |   |   |   |\n"
+    "|   |   |   |   |   |\n"
     "|    --- --- ---    |\n"
     " ------------------- \n",
 
     " --SCRATCH 'N' WIN-- \n"
     "|    ___ ___ ___    |\n"
-    "|   | " + to_string(ticket.value1) + " | " + to_string(ticket.value2) + " |   |   |\n"
+    "|   |   |   |   |   |\n"
     "|    --- --- ---    |\n"
     " ------------------- \n",
 
     " --SCRATCH 'N' WIN-- \n"
     "|    ___ ___ ___    |\n"
-    "|   | " + to_string(ticket.value1) + " | " + to_string(ticket.value2) + " | " + to_string(ticket.value3) + " |   |\n"
+    "|   |   |   |   |   |\n"
     "|    --- --- ---    |\n"
     " ------------------- \n",
     };

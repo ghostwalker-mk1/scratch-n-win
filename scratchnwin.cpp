@@ -1,23 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h> 
-#include <time.h>
 #include <iostream>
 #include <array>
 #include <map>
-
-using namespace std;
+#include <vector>
+#include <random>
 
 int main () {
 
     struct Outcome {
         double prob;
         int payout;
-        string symbol;
+        std::string symbol;
         double lowR;
         double highR;
-    } outcomes;
+    } outcome;
 
-    Outcome outcomes[6] = {
+    std::vector<Outcome> outcomes = {
         {0.695, 0, "💣", 0, 0.695},
 
         {0.170, 1, "🍋", 0.695, 0.865},
@@ -31,38 +30,25 @@ int main () {
         {0.010, 25, "⭐", 0.990, 1.000}
     };
 
-    srand(time(NULL));
+    std::mt19937 rng(std::random_device{}());
+    std::uniform_real_distribution<double> dist(0.0, 1.0);
 
-    double roll = ((double) rand() / RAND_MAX);
-    cout << roll <<"\n";
+    double roll = dist(rng);
+
+    std::cout << roll <<"\n";
+    
+    for (Outcome &res : outcomes) {
+        std::cout << res.prob <<"\n";
+    }
     
     
-    array<string, 4> banners = {
+    std::string ticket = {
     " --SCRATCH 'N' WIN-- \n"
     "|    ___ ___ ___    |\n"
     "|   |   |   |   |   |\n"
     "|    --- --- ---    |\n"
-    " ------------------- \n",
-
-    " --SCRATCH 'N' WIN-- \n"
-    "|    ___ ___ ___    |\n"
-    "|   |   |   |   |   |\n"
-    "|    --- --- ---    |\n"
-    " ------------------- \n",
-
-    " --SCRATCH 'N' WIN-- \n"
-    "|    ___ ___ ___    |\n"
-    "|   |   |   |   |   |\n"
-    "|    --- --- ---    |\n"
-    " ------------------- \n",
-
-    " --SCRATCH 'N' WIN-- \n"
-    "|    ___ ___ ___    |\n"
-    "|   |   |   |   |   |\n"
-    "|    --- --- ---    |\n"
-    " ------------------- \n",
+    " ------------------- \n"
     };
-
     return 0;
 
 }

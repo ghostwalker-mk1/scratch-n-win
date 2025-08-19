@@ -9,53 +9,27 @@ using namespace std;
 
 int main () {
 
-    struct {
-        double prob = 0.695;
-        int payout = 0;
-        string symbol = "💣";
-        double lowR = 0;
-        double highR = 0.695;
-    } lose;
+    struct Outcome {
+        double prob;
+        int payout;
+        string symbol;
+        double lowR;
+        double highR;
+    } outcomes;
 
-    struct {
-        double prob = 0.170;
-        int payout = 1;
-        string symbol = "🍋";
-        double lowR = 0.695;
-        double highR = 0.865;
-    } small1;
+    Outcome outcomes[6] = {
+        {0.695, 0, "💣", 0, 0.695},
 
-    struct {
-        double prob = 0.070;
-        int payout = 2;
-        string symbol = "🍒";
-        double lowR = 0.865;
-        double highR = 0.935;
-    } small2;
+        {0.170, 1, "🍋", 0.695, 0.865},
 
-    struct {
-        double prob = 0.040;
-        int payout = 5;
-        string symbol = "🍇";
-        double lowR = 0.935;
-        double highR = 0.975;
-    } mid;
+        {0.070, 2, "🍒", 0.865, 0.935},
 
-    struct {
-        double prob = 0.015;
-        int payout = 10;
-        string symbol = "🔔";
-        double lowR = 0.975;
-        double highR = 0.990;
-    } big;
+        {0.040, 5, "🍇", 0.935, 0.975},
 
-    struct {
-        double prob = 0.010;
-        int payout = 25;
-        string symbol = "⭐";
-        double lowR = 0.990;
-        double highR = 1.000;
-    } jackpot;
+        {0.015, 10, "🔔", 0.975, 0.990},
+
+        {0.010, 25, "⭐", 0.990, 1.000}
+    };
 
     srand(time(NULL));
 

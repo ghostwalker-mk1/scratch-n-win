@@ -36,20 +36,35 @@ int main () {
 
     double roll = dist(rng);
 
-    std::cout << roll <<"\n";
+    // std::cout << roll <<"\n";
     
     Outcome deal;
 
     for (Outcome &res : outcomes) {
         if (roll >= res.lowR && roll < res.highR) {
             deal = res;
-        }
-    }
+        };
+    };
+
+    std::string symbol1;
+    std::string symbol2;
+    std::string symbol3;
+
+    std::vector<std::string> symbols = {
+        symbol1, symbol2, symbol3
+    };
+
+    if (deal.payout == 0) {
+    } else {
+        for (int i = 0; i < symbols.size(); i++) {
+            symbols[i] = deal.symbol;
+        };
+    };
 
     std::vector<std::string> ticket = {
     {
     " --SCRATCH 'N' WIN-- \n"
-    "|    ___ ___ ___    |\n"
+    "|    ___ ___ ___  $1|\n"
     "|   |   |   |   |   |\n"
     "|    --- --- ---    |\n"
     " ------------------- \n"
@@ -57,24 +72,24 @@ int main () {
 
     {
     " --SCRATCH 'N' WIN-- \n"
-    "|    ___ ___ ___    |\n"
-    "|   | " + deal.symbol + "|   |   |   |\n"
+    "|    ___ ___ ___  $1|\n"
+    "|   | " + symbols[0] + "|   |   |   |\n"
     "|    --- --- ---    |\n"
     " ------------------- \n"
     },
 
     {
     " --SCRATCH 'N' WIN-- \n"
-    "|    ___ ___ ___    |\n"
-    "|   | " + deal.symbol + "| " + deal.symbol + "|   |   |\n"
+    "|    ___ ___ ___  $1|\n"
+    "|   | " + symbols[0] + "| " + symbols[1] + "|   |   |\n"
     "|    --- --- ---    |\n"
     " ------------------- \n"
     },
 
     {
     " --SCRATCH 'N' WIN-- \n"
-    "|    ___ ___ ___    |\n"
-    "|   | " + deal.symbol + "| " + deal.symbol + "| " + deal.symbol + "|   |\n"
+    "|    ___ ___ ___  $1|\n"
+    "|   | " + symbols[0] + "| " + symbols[1] + "| " + symbols[2] + "|   |\n"
     "|    --- --- ---    |\n"
     " ------------------- \n"
     }
@@ -101,11 +116,9 @@ int main () {
 
     if (deal.payout == 0) {
         std::cout << "D'oh! Nothing...\n";
-    } else if (deal.payout == 1 || deal.payout == 2) {
-        std::cout << "You won $" + std::to_string(deal.payout) + ".\n";
     } else {
         std::cout << "Woo-hoo! You won $" + std::to_string(deal.payout) + "!\n";
-    }
+    };
 
     return 0;
 

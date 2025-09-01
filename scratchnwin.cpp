@@ -1,21 +1,29 @@
-#include <stdio.h>
-#include <stdlib.h> 
 #include <iostream>
-#include <array>
-#include <map>
 #include <vector>
+#include <string>
 #include <random>
+#include <algorithm>
+
+// Struct for possible outcomes
+struct Outcome {
+    double prob;
+    int payout;
+    std::string symbol;
+    double lowR;
+    double highR;
+};
+
+// Struct for loss outcome types
+struct LossOutcome {
+    std::string symbol;
+    double prob;
+    double lowR;
+    double highR;
+};
 
 int main () {
 
-    struct Outcome {
-        double prob;
-        int payout;
-        std::string symbol;
-        double lowR;
-        double highR;
-    } outcome;
-
+    // Possible outcomes
     std::vector<Outcome> outcomes = {
         {0.599, 0, "💣", 0, 0.599},
 
@@ -30,13 +38,20 @@ int main () {
         {0.010, 25, "💲", 0.994, 1.000}
     };
 
+    // Loss outcomes
+    std::vector<LossOutcome> lossOutcomes = {
+        {"alldiff", 0.60, 0, 0.60},
+        {"2ofkind", 0.30, 0.60, 0.90},
+        {"3ofkind", 0.10, 0.90, 1.0}
+    };
+
+    // Generate "randomness"
     std::random_device rd;
     std::mt19937 rng(rd());
     std::uniform_real_distribution<double> dist(0.0, 1.0);
 
+    // Main roll
     double roll = dist(rng);
-
-    // std::cout << roll <<"\n";
     
     Outcome deal;
 
@@ -46,6 +61,77 @@ int main () {
         };
     };
 
+    // Loss roll
+    double lossRoll = dist(rng);
+
+    LossOutcome lossDeal;
+
+    for (LossOutcome &res : lossOutcomes) {
+        if (lossRoll >= res.lowR && lossRoll < res.highR) {
+            lossDeal = res;
+        };
+    };
+
+    // 2 OF A KIND
+
+    // Dupe roll
+    double dupeRoll = dist(rng);
+    
+    Outcome dupeDeal;
+
+    for (Outcome &res : outcomes) {
+        if (dupeRoll >= res.lowR && dupeRoll < res.highR) {
+            dupeDeal = res;
+        };
+    };
+
+    // Odd roll
+    double oddRoll = dist(rng);
+    
+    Outcome oddDeal;
+
+    for (Outcome &res : outcomes) {
+        if (oddRoll >= res.lowR && oddRoll < res.highR && res.symbol != dupeDeal.symbol) {
+            oddDeal = res;
+        };
+    };
+
+    // 3 OF A KIND
+
+    // 1
+    double roll1 = dist(rng);
+    
+    Outcome deal1;
+
+    for (Outcome &res : outcomes) {
+        if (roll1 >= res.lowR && roll1 < res.highR) {
+            deal1 = res;
+        };
+    };
+
+    // 2
+    double roll2 = dist(rng);
+    
+    Outcome deal2;
+
+    for (Outcome &res : outcomes) {
+        if (roll2 >= res.lowR && roll2 < res.highR && res.symbol != deal1.symbol) {
+            deal2 = res;
+        };
+    };
+
+    // 3
+    double roll3 = dist(rng);
+    
+    Outcome deal3;
+
+    for (Outcome &res : outcomes) {
+        if (roll3 >= res.lowR && roll3 < res.highR && res.symbol != deal1.symbol && res.symbol != deal2.symbol) {
+            deal3 = res;
+        };
+    };
+
+    // Create symbols
     std::string symbol1;
     std::string symbol2;
     std::string symbol3;
@@ -54,13 +140,33 @@ int main () {
         symbol1, symbol2, symbol3
     };
 
+    std::cout << lossDeal.symbol << "\n";
+
+    // Pick symbols
     if (deal.payout == 0) {
+        if (lossDeal.symbol == "3ofkind") {
+            symbols[0] = deal.symbol;
+            symbols[1] = deal.symbol;
+            symbols[2] = deal.symbol;
+        } else if (lossDeal.symbol == "2ofkind") {
+            symbols[0] = dupeDeal.symbol;
+            symbols[1] = dupeDeal.symbol;
+            symbols[2] = oddDeal.symbol;
+        } else {
+            symbols[0] = deal1.symbol;
+            symbols[1] = deal2.symbol;
+            symbols[2] = deal3.symbol;
+        }
     } else {
-        for (int i = 0; i < symbols.size(); i++) {
-            symbols[i] = deal.symbol;
-        };
+        symbols[0] = deal.symbol;
+        symbols[1] = deal.symbol;
+        symbols[2] = deal.symbol;
     };
 
+    // Shuffle symbols
+    std::shuffle(symbols.begin(), symbols.end(), rng);
+
+    // Ticket stages
     std::vector<std::string> ticket = {
     {
     " --SCRATCH 'N' WIN-- \n"
@@ -95,8 +201,11 @@ int main () {
     }
     };
     
+    // Scratch game
     std::string input = "";
     int count = 0;
+
+    std::cout << "Scratch to win!\n";
 
     do {
         if (count >= ticket.size()) {
@@ -110,14 +219,13 @@ int main () {
         count++;
         }
 
-        std::cout << count <<"\n";
-
     } while (1);
 
+    // Show result
     if (deal.payout == 0) {
-        std::cout << "D'oh! Nothing...\n";
+        std::cout << "\nD'oh! Nothing...\n";
     } else {
-        std::cout << "Woo-hoo! You won $" + std::to_string(deal.payout) + "!\n";
+        std::cout << "\nWoo-hoo! You won $" + std::to_string(deal.payout) + "!\n";
     };
 
     return 0;

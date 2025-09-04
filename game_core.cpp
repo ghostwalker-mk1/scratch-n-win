@@ -5,7 +5,6 @@
 #include <stdlib.h> 
 #include <iostream>
 #include <array>
-#include <map>
 #include <vector>
 #include <random>
 #include <algorithm> 
@@ -49,7 +48,6 @@ std::vector<std::string> generateTicket() {
             }
         }
     }
-
     return symbols;
 };
 

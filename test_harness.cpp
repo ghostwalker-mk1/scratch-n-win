@@ -35,6 +35,8 @@ int main() {
 
     MyFile.close();
 
+    std::cout << "Done!\n";
+
     /*
     double winRate = (double(wins) / double(n)) * 100;
     double rtp = (double(totalPayout) / double(totalSpent)) * 100;

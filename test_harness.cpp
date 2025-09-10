@@ -4,7 +4,7 @@
 
 int main() {
 
-    int n = 100;
+    int n = 100000;
     int totalSpent = n * 1;
     int wins = 0;
     int totalPayout = 0;
@@ -16,6 +16,7 @@ int main() {
 
     MyFile << "TicketID,Symbol1,Symbol2,Symbol3,Win,Payout\n";
 
+    // Gameplay simulation
     for (int i = 0; i < n; i++) {
 
         payout = 0;

@@ -10,6 +10,8 @@ int main() {
     int totalPayout = 0;
     int totalSymbols = n * 3;
 
+    std::cout << "Simulating " << n << " games...\n";
+
     std::ofstream MyFile("output.txt");
 
     MyFile << "TicketID,Symbol1,Symbol2,Symbol3,Win,Payout\n";

@@ -1,12 +1,18 @@
 #include "game_core.cpp"
+#include <iostream>
+#include <fstream>
 
 int main() {
 
-    int n = 100000;
+    int n = 100;
     int totalSpent = n * 1;
     int wins = 0;
     int totalPayout = 0;
     int totalSymbols = n * 3;
+
+    std::ofstream MyFile("output.txt");
+
+    MyFile << "TicketID,Symbol1,Symbol2,Symbol3,Win,Payout\n";
 
     for (int i = 0; i < n; i++) {
 
@@ -18,18 +24,19 @@ int main() {
 
         isWin = checkWin(&symbols);
 
-        if (isWin) {
-            wins++;
-        };
-
-        totalPayout += payout;
+        MyFile << i + 1 << "," << symbols[0] << "," 
+        << symbols[1] << "," << symbols[2] << "," 
+        << isWin << "," << payout << "\n";
 
     };
 
+    MyFile.close();
+
+    /*
     double winRate = (double(wins) / double(n)) * 100;
     double rtp = (double(totalPayout) / double(totalSpent)) * 100;
 
-    std::cout << "---------- TEST SHEET ----------\n";
+    std::cout << "---------- TEST RESULTS ----------\n";
 
     std::cout << "Simulation of " << n << " scratch tickets:" "\n\n";
 
@@ -44,6 +51,7 @@ int main() {
     std::cout << "RTP (Return to Player): " << rtp << "%" << "\n";
 
     std::cout << "--------------------------------\n";
+    */
 
     return 0;
 }

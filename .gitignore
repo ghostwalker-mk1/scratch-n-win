@@ -1,5 +1,6 @@
+.vscode/
+.DS_Store
+~$*.xlsx
 output.txt
-sim.xlsx
 scratch_n_win
 test_harness
-~$sim.xlsx

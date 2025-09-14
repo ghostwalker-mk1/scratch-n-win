@@ -11,6 +11,9 @@ It includes:
 - A test harness that simulates one hundred thousand tickets, logs results to CSV, and enables analysis of fairness, win rates, payout distributions, etc.
 - The potential for Excel visualizations comparing observed outcomes to theoretical probabilities and anything else that may be of interest.
 
+<img width="150" height="500" alt="image" src="https://github.com/user-attachments/assets/e377a2bc-aa3d-4bd8-8804-25b7a0399afe" />
+
+
 # Features
 
 - Weighted random symbol generation (🍋, 🍒, 🍇, 🔔, 💲).
@@ -20,27 +23,33 @@ It includes:
 - Excel charts with overlay lines (observed vs. theoretical).
 
 # Project Structure
+```
 .
 ├── scratch_game.cpp   # Scratch ticket game
 ├── test_harness.cpp   # Automated simulation & CSV output
 └── README.md          # Documentation
+```
 
 # Setup & Compilation
 
 Compile the files using g++ (or your preferred C++ compiler):
 
+```
 g++ scratch_game.cpp -o scratch_game
 g++ test_harness.cpp -o test_harness
-
+```
 
 Run the game:
 
+```
 ./scratch_game
-
+```
 
 Run automated tests:
 
+```
 ./test_harness
+```
 
 # Data Analysis
 

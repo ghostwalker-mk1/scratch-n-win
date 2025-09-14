@@ -27,6 +27,7 @@ It includes:
 .
 ├── scratch_game.cpp   # Scratch ticket game
 ├── test_harness.cpp   # Automated simulation & CSV output
+├── game_core.cpp      # Core files for game and test harness
 ├── sim.xlsx           # Data Analysis
 └── README.md          # Documentation
 ```

@@ -2,7 +2,8 @@
 
 This project is a C++ implementation of a scratch ticket lottery game inspired by The Simpsons’ Scratch ’n’ Win.
 
-<img width="480" height="360" alt="GfkprLNWkAAtTpF" src="https://github.com/user-attachments/assets/376f6fee-7193-44c9-a225-b2a70758677b" />
+<img width="343" height="230" alt="Scratch_n_Win" src="https://github.com/user-attachments/assets/9980ea2b-2612-4541-b259-40c2cf152450" />
+
 
 It includes:
 

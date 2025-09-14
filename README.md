@@ -54,7 +54,7 @@ Run automated tests:
 # Data Analysis
 
 - Open results.csv in Excel (or another spreadsheet tool).
-- Use formulas & pivot tables to calculate and visualize:
+- Use formulas to calculate and visualize:
 
 - Win frequency vs. expected probability
 - Symbol distributions
